@@ -1,0 +1,28 @@
+-- ************************* Sekcja create *************************
+-- ------------------------- Tworzenie bazy -------------------------
+-- Proszę utworzyć bazę 'księgarnia'
+-- ------------------------- Tworzenie użytkownika -------------------------
+-- Proszę utworzyć 3 użytkowników 'user1a','user2b','user3c' z hasłem 'abc123'
+-- Nadaj uprawnienia do wykonywania operacji SELECT, CREATE, ALTER, REFERENCES każdemu z nich
+-- Proszę utworzyć nową instancję dla stworzonego użytkownika 'user1a' i zalogować się do niej i wybrać domyślną bazę 'księgarnia'
+-- Proszę przelączyć się na root i z tego poziomu zmienić uprawnienia dla 'user1a' i dać mu wszystkie uprawnienia do schemy 'księgarnia'. 
+-- Proszę zmienić uprawnienia 'user2b' tak by mógł wykonywać jedynie operacje typu SELECT.
+-- Proszę usunąć user3c.
+-- ------------------------- Tworzenie tabel -------------------------
+-- Na podstawie prezentacji (s 1-24) stwórz model bazy danych dla Księgarni 
+-- Napisz skrypt do stworzenia 3 tabel: autorzy, książki, wydawnictwa z min. 3 polami w każdej uwzględniając pola dla kluczy obcych
+--   oraz załóż klauzule NOT NULL na odpowiednie pola. Dodaj zabezpieczenie, w przypadku istnienia w bazie takiej tabeli. 
+-- Utwórz przynajmniej po jednym rekordzie w każdej z tabel.
+-- Połącz odpowienidnie tabele relacjami klucz główny - klucz obcy pamiętając, że dane w polach połączonych polach powinny być koherentne.
+-- Na podstawie wykonanego modelu wygeneruj diagram ERD.
+-- Stwórz zapytanie, w którym wypiszesz Tytuł książki, autora i wydawnictwo.
+-- ************************* Sekcja Query *************************
+-- ------------------------- Tworzenie zapytań -------------------------
+-- POZIOM I
+-- 1. Wybierz wszystkie informacje z tabeli Student za wyjątkiem tel. i maila.
+-- 2. Wypisz bez powtórzeń miasta, których pochodzą Wykładowcy.
+-- 3. Policz ile jest zaliczeń z wynikiem pozytywnym.
+-- 4. Wypisz dane studentów w nastepujący sposób: I kolumna (imie, nazwisko), II kolumna (dane adresowe potrzebne do nadania paczki)
+-- 5. Wybierz wykładowców z nazwiskiem na literę K spoza Rzeszowa.
+-- 6. Wyświetl przedmioty dla których liczba punktów ECTS jest niższa od średniej dla wszystkich kierunków.
+-- 7. Wyświetl ilość zaliczeń z każdego kierunku i posortuj wyniki malejąco po tej liczbie.
