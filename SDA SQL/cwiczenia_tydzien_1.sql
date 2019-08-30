@@ -79,14 +79,31 @@ SELECT s.ID_Studenta, s.Imie, s.Nazwisko, s.PESEL, COUNT(IF(z.wynik = 'Zaliczony
 	FROM studenci s 
 	LEFT JOIN zaliczenia z ON z.ID_Studenta = s.ID_Studenta GROUP BY ID_Studenta ;
 -- 24. Dodaj nowego studenta uzupełniając wszystkie dane.
-
+INSERT INTO studenci(ID_Studenta, Nazwisko, Imie, Data_ur, Miejsce, PESEL, Kod, Miasto, Ulica, Numer, Tel, E_mail)
+VALUES('1800324','Odinson','Olaf','1980-04-14','Oslo','80043174123','35-111','Rzeszów','Eskuelowa',1,'886111222','olafo@gmail.com');
+-- 24.b Dodaj nowego studenta tylko z polami wymaganaymi ktore nie maja wartosci defaultowej
+INSERT INTO studenci (ID_Studenta,nazwisko) VALUES('1800325','Bastion');
 -- 25. Dodaj kolejnych dwóch studentów używając jednego zapytania postaraj się by każdy z nich miał inną datę urodzenia. (edited) 
--- 26. Usuń najmłodszego z 3 dodanych studentów.
+INSERT INTO studenci (ID_Studenta,nazwisko,imie,Data_ur)
+VALUES('1800326','Buk','Tomasz','1967-02-28'),('1800327','Dżawa','Dariusz','1995-05-23');
+-- 26. Usuń najmłodszego z 3 dodanych studentów.(usune dowolnego)
+DELETE FROM studenci WHERE ID_Studenta = '1800326';
 -- 27. Dla nowo dodanych studentów zmodyfikuj wartość pola Miejsce na 'Opole';
+UPDATE studenci SET Miejsce = 'Opole' WHERE ID_Studenta IN('1800324','1800326','1800327');
 -- 28. Utwórz kopię tabeli Studentów o nazwie Studenci_BKP.
+CREATE TABLE IF NOT EXISTS Studenci_BKP SELECT * FROM studenci;
 -- 29. Utwórz tabelę Studenci_RZE z takimi samymi polami jak tabela Studenci za wyjątkiem pola Miasto (edited) 
+CREATE TABLE IF NOT EXISTS Studenci_RZE SELECT ID_Studenta, Nazwisko, Imie, Data_ur, Miejsce, PESEL, Kod, Ulica, Numer, Tel, E_mail
+	FROM studenci WHERE TRUE=FALSE;
 -- 30. Wypełnij tabelę Studenci_RZE danymi z tabeli Studenci wybierając tylko tych, którzy pochodzą z Rzeszowa
+INSERT INTO Studenci_RZE SELECT ID_Studenta, Nazwisko, Imie, Data_ur, Miejsce, PESEL, Kod, Ulica, Numer, Tel, E_mail
+	FROM studenci WHERE miasto = 'Rzeszów';
 -- 31. Wyświetl ilość zaliczeń z każdego kierunku korzystając z funkcji grupowania.
+SELECT ID_Kierunku, COUNT(*) AS n_zaliczen FROM zaliczenia GROUP BY ID_kierunku;
+-- 31.b jak 31 ale zamiast ID_Kierunku wypisz nazwe kierunku
+SELECT k.nazwa, COUNT(wynik) AS n_zaliczen FROM kierunki k LEFT JOIN zaliczenia z ON z.ID_Kierunku = k.ID_Kierunku GROUP BY k.nazwa; 
 -- 32. Wyświetl ID_studenta który nie zaliczył egzaminów więcej niż raz korzystając z GROUP BY  i HAVING
+SELECT ID_Studenta, COUNT(ID_Studenta) AS n_oblanych FROM zaliczenia WHERE wynik = 'Negatywny' GROUP BY ID_Studenta HAVING COUNT(ID_Studenta) > 1;
+
 ;
 ​
